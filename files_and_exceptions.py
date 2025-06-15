@@ -1,8 +1,8 @@
 def read_file_to_dict(filename):
     ventas = {}
 
-    try:
-        with open(filename, "r") as archivo:
+    with open(filename, "r") as archivo:
+        try:
             linea = archivo.readline().strip()
             registros = linea.split(";")
 
@@ -16,15 +16,15 @@ def read_file_to_dict(filename):
                     else:
                         ventas[producto] = [valor]
 
-    except FileNotFoundError:
-        print(f"Error: El archivo '{filename}' no fue encontrado.")
-    except Exception as e:
-        print("Error al procesar el archivo:", e)
+        except Exception as e:
+            print("Error al procesar el archivo:", e)
 
     return ventas
-    
+
+
 def process_dict(ventas):
     for producto, montos in ventas.items():
         total = sum(montos)
         promedio = total / len(montos)
         print(f"{producto}: ventas totales ${total:.2f}, promedio ${promedio:.2f}")
+    
